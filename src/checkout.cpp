@@ -3,7 +3,6 @@
 #include <filesystem>
 #include <string>
 #include <vector>
-#include "../include/utils.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -41,10 +40,7 @@ void handleCheckout(const string& commitFile, const string& fileName) {
 
         if (readingFile) {
             if (line == "-------------------------") {
-                if (!fileContent.empty()) {
-                    break;
-                }
-                continue;
+                break;
             }
             fileContent.push_back(line);
         }
