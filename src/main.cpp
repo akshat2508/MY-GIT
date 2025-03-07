@@ -7,6 +7,8 @@
 #include "../include/log.h"
 #include "../include/utils.h"
 #include "../include/checkout.h"
+#include "../include/branch.h"
+
 using namespace std;
 
 #define YELLOW  "\033[1;33m"
@@ -51,13 +53,33 @@ int main(int argc, char* argv[]) {
     else if (command == "log") {
         handleLog(); // Handling the git log feature
     }
+    else if (command == "checkout" && argc == 4) {
+        handleCheckout(argv[2], argv[3]);
+    }
+    else if (command == "branch") {
+        if (argc < 3) {
+            cout << "❌ Error: Invalid branch command usage!" << endl;
+            cout << "Usage: mygit branch <create|switch> <branch_name>" << endl;
+            return 1;
+        }
 
-    else if (command == "checkout" && argc == 4)
-    {
-        handleCheckout(argv[2],argv[3]);
+        string subCommand = argv[2];
+
+        if (subCommand == "create" && argc == 4) {
+            string branchName = argv[3];
+            createBranch(branchName);
+        } 
+        else if (subCommand == "switch" && argc == 4) {
+            string branchName = argv[3];
+            switchBranch(branchName);
+        } 
+        else {
+            cout << "❌ Invalid branch command usage!" << endl;
+            cout << "Usage: mygit branch <create|switch> <branch_name>" << endl;
+        }
     }
     else {
-        cout << RED<<"❌ Error: Unknown command '" << command << "'!" <<RESET<< endl;
+        cout << RED << "❌ Error: Unknown command '" << command << "'!" << RESET << endl;
     }
 
     return 0;

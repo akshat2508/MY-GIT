@@ -51,7 +51,7 @@ LIBS = -L/opt/homebrew/opt/openssl@3/lib
 
 # Source files
 # Added checkout.cpp to the list of source files
-SRCS = src/main.cpp src/init.cpp src/add.cpp src/status.cpp src/commit.cpp src/log.cpp src/utils.cpp src/checkout.cpp
+SRCS = src/main.cpp src/init.cpp src/add.cpp src/status.cpp src/commit.cpp src/log.cpp src/utils.cpp src/checkout.cpp src/branch.cpp
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)
